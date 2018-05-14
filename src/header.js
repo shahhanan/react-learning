@@ -2,66 +2,27 @@ import React, { Component } from "react";
 // import { Div, Anchor, Textbox, Button } from "./templates";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Profile: {
-        Name: "Hanan",
-        startAge: 25,
-        endAge: 30,
-        MaritalStatus: "single"
-      },
-      Speed: "20km/s"
-    };
-  }
-  older(i) {
-    const newAge = this.state.Profile.startAge + 1;
-    this.setState({
-      Profile: {
-        Name: "Hanan",
-        startAge: newAge,
-        endAge: 30,
-        MaritalStatus: "single"
-      },
-      Speed: "20km/s"
-    });
-  }
-  younger(j) {
-    const newAge = this.state.Profile.startAge - 1;
-    this.setState({
-      Profile: {
-        Name: "Hanan",
-        startAge: newAge,
-        endAge: 30,
-        MaritalStatus: "single"
-      },
-      Speed: "20km/s"
-    });
-  }
-  reset(k) {
-    const newAge = 25;
-    this.setState({
-      Profile: {
-        Name: "Hanan",
-        startAge: newAge,
-        endAge: 30,
-        MaritalStatus: "single"
-      },
-      Speed: "20km/s"
-    });
-  }
+ 
+constructor(props){
+super(props)
+let a = this.props.Profile.Name;
+}
 
-  render() {
-    if (this.state.Profile.startAge < this.state.Profile.endAge) {
-      return (
+ 
+  
+  
+
+  render()  { 
+    if (this.props.Profile.startAge < this.props.Profile.endAge) {
+      return ( 
         <div className="header">
-          My Name is {this.state.Profile.Name}, I am
-          {this.state.Profile.startAge} Years old <br />
-          <a href="#" onClick={i => this.older(i)}>
+          My Name is {this.props.Profile.Name}, I am
+          {this.props.Profile.startAge} Years old <br />
+          <a href="#" onClick={this.props.older()}>
             Click
           </a>
           Me to see me grow old <br />
-          <a href="#" onClick={j => this.younger(j)}>
+          <a href="#" onClick={this.props.younger()}>
             Click
           </a>
           Me to see me grow Younger
@@ -71,14 +32,14 @@ class Header extends Component {
       return (
         <div className="header">
           Bro u just made me 30 years old. Stop doing It...<br />
-          <a href="#" onClick={k => this.reset(k)}>
+          <a href="#" onClick={this.props.reset()}>
             Click
           </a>
           to reset my age. <br />
-        </div>
-      );
-    }
-  }
+        </div>    
+      );  
+    } 
+  } 
 }
 
 export default Header;
