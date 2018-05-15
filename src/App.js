@@ -59,17 +59,22 @@ class App extends Component {
       Speed: "20km/s"
     });
   };
+  jumpTo = (newStateData) => {
+    let {newData} = newStateData;
+    this.setState(newData); 
+  }
 
   render() {
+    let {Profile} = this.state;
     return (
       <div className="App">
         <Header
-          {...this.state}
+          Profile={Profile}
           older={this.older}
           younger={this.younger}
           reset={this.reset}
         />
-        <Body {...this.state} />
+        <Body Profile={Profile} jumpTo={this.jumpTo} />
         <Footer />
       </div>
     );

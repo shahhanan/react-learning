@@ -4,23 +4,34 @@ class Body extends Component {
   constructor(props) {
     super(props);
 
-    this.state = [this.props];
+    this.state = {
+      data: [this.props]
+    };
   }
 
   componentWillReceiveProps = nextProps => {
-    let temp = this.state;
-    temp.push(nextProps);
-
-    this.setState(temp);
+    let { data } = this.state;
+    data.push(nextProps);
+    this.setState(data);
   };
 
   render() {
-    let populate = this.state.map((row, i) => {
+    let { data } = this.state;
+    let populate = data.map((row, i) => {
+     
       return (
-        <span key={i}> you just changed my age to {row.Profile.startAge} </span>
+        <div key={i}>
+          {" "}
+          you just changed my age to {row.Profile.startAge}
+          <a href="#" onClick={() => this.props.jumpTo(row)}>
+            Undo This Step{" "}
+          </a>
+          <br />
+        </div>
       );
+   
     });
-    return <div className="body">{populate}</div>;
+  return(<div className="body">{populate}</div>);
   }
 }
 
