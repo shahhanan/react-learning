@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
-
-
-
-
-
+import React, { Component } from "react";
 
 class Body extends Component {
-   render() {
+  constructor(props) {
+    super(props);
 
-      return (
-        <div className="body">
-      
-        </div>
-      );
-    }
+    this.state = [this.props];
   }
-  
-  export default Body;
+
+  componentWillReceiveProps = nextProps => {
+    let temp = this.state;
+    temp.push(nextProps);
+
+    this.setState(temp);
+  };
+
+  render() {
+    let populate = this.state.map((row, i) => {
+      return (
+        <span key={i}> you just changed my age to {row.Profile.startAge} </span>
+      );
+    });
+    return <div className="body">{populate}</div>;
+  }
+}
+
+export default Body;
