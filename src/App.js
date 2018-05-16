@@ -20,7 +20,7 @@ class App extends Component {
   }
   older = () => {
     const newAge = this.state.Profile.startAge + 1;
-    let step = this.stepNumber + 1;
+    let step = this.state.stepNumber + 1;
     this.setState({
       Profile: {
         Name: "Hanan",
@@ -34,7 +34,7 @@ class App extends Component {
   };
   younger = () => {
     const newAge = this.state.Profile.startAge - 1;
-    let step = this.stepNumber + 1;
+    let step = this.state.stepNumber + 1;
     this.setState({
       Profile: {
         Name: "Hanan",
@@ -47,7 +47,6 @@ class App extends Component {
     });
   };
   reset = () => {
-    // const Age = this.state.Profile.endAge - this.state.stepNumber;
     this.setState({
       Profile: {
         Name: "Hanan",
@@ -59,23 +58,23 @@ class App extends Component {
       Speed: "20km/s"
     });
   };
-  jumpTo = (newStateData) => {
-    let {newData} = newStateData;
-    this.setState(newData); 
+  undoStep = (newState) => {
+    this.setState(newState);
   }
 
   render() {
-    let {Profile} = this.state;
+    let { Profile } = this.state;
     return (
+      
       <div className="App">
         <Header
-          Profile={Profile}
+          {...this.state}
           older={this.older}
           younger={this.younger}
           reset={this.reset}
         />
-        <Body Profile={Profile} jumpTo={this.jumpTo} />
-        <Footer />
+        <Body {...this.state} undoStep={this.undoStep} />
+        <Footer Profie={Profile}/>
       </div>
     );
   }

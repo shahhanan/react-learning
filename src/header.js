@@ -2,8 +2,9 @@ import React, { Component } from "react";
 // import { Div, Anchor, Textbox, Button } from "./templates";
 
 class Header extends Component {
+ 
   render() {
-    if (this.props.Profile.startAge < this.props.Profile.endAge) {
+      if (this.props.Profile.startAge < this.props.Profile.endAge) {
       return (
         <div className="header">
           My Name is {this.props.Profile.Name}, I am
@@ -29,7 +30,9 @@ class Header extends Component {
         </div>
       );
     }
-  }
+  } 
+   
+  
 }
 
 export default Header;
